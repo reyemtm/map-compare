@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>Map Compare | Mapbox v2</title>
+  <script src=''></script>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/mapbox-gl/2.3.1/mapbox-gl.css'/>
+  <link rel="stylesheet" href="/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mapbox-gl/2.3.1/mapbox-gl.js"></script>
+  <script async src="https://analytics.apps.zerospatial.com/tracker.js" data-ackee-server="https://analytics.apps.zerospatial.com" data-ackee-domain-id="344c0852-dbe7-4169-bc6c-71bf074fe472"></script>
+</head>
+<body>
+  <div id="map" class="map-full"></div>
+  <div id="error" style="display:none;margin:40px auto;"><h1 style="font-size:100px;">404</h1></div>
+  <script>
+    // if (!confirm("Clicking this link will send telemetry data to a third party. Only continue if you agree. See the Mapbox website for details.")) {
+    //   document.querySelector("#map").style.display = "none";
+    //   document.querySelector("#error").style.display = "block";
+    //   throw new Error("Something went badly wrong!");
+    // }else{
+    mapboxgl.accessToken = "pk.eyJ1IjoiY296Z2lzIiwiYSI6ImNqaGhseTVscTFzZWEzZG55MzBvczV6eGYifQ.w0RKegi-wXpTsBkSrposqg"
+    // }
+  </script>
+  <script src="../mapbox-v1/mapbox-v1-map.js"></script>
+</body>
+</html>

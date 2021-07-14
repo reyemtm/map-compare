@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>Map Compare</title>
+
+  <!-- OPENGRAPH -->
+  <meta property="og:site_name" content="" />
+  <meta property="og:title" content="Map Compare" />
+  <meta property="og:description"
+    content="A quick look at four JavaScript map libraries and how they compare in rendering vector tiles." />
+  <meta property="og:url" content="https://map-compare.apps.zerospatial.com" />
+  <meta property="og:type" content="article" />
+  <meta property="article:publisher" content="https://www.getbounds.com" />
+  <meta property="article:tag" content="Data Visualization" />
+  <meta property="article:tag" content="Mapbox GL JS" />
+  <meta property="article:tag" content="OpenLayers" />
+  <meta property="article:tag" content="Leaflet JS" />
+  <meta property="article:tag" content="Web Maps" />
+  <meta property="og:image" content="https://map-compare.apps.zerospatial.com/image.jpg" />
+  <meta property="og:image:width" content="1600" />
+  <meta property="og:image:height" content="900" />
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:image" content="https://map-compare.apps.zerospatial.com/image.jpg" />
+  <meta property="twitter:site" content="@getbounds" />
+
+  <link rel="stylesheet" href="/style.css">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display" rel="stylesheet">
+
+</head>
+<body>
+  <header>
+    <h1 style="font-family: 'Major Mono Display', monospace;font-weight:100;letter-spacing: 4px;">MapCompare</h1>
+    <h2>v1 Comparison of Vector Tile Rendering</h2>
+  </header>
+
+  </div>
+  <main>
+    <section class="container">
+      <div class="links">
+        <span>
+          <a href="/?map=esri-v4">Esri v4</a><br><a href="/esri-v4/esri-map.js"  style="font-size:10px;opacity:0.8;">100 lines</a>
+        </span>
+        <span>
+          <a href="/?map=leaflet">Leaflet</a><br><a href="/leaflet/leaflet-map.js" style="font-size:10px;opacity:0.8;">42 lines</a>
+        </span>
+        <span>
+          <a href="/?map=mapbox-v1">Mapbox</a><br><a href="/mapbox-v1/mapbox-v1-map.js"  style="font-size:10px;opacity:0.8;">94 lines</a>
+        </span>
+        <span>
+          <a href="/?map=mapbox-v2">Mapbox v2</a><br><a href="/mapbox-v1/mapbox-v1-map.js"  style="font-size:10px;opacity:0.8;">95 lines</a>
+        </span>
+        <span>
+          <a href="/?map=ol">OpenLayers</a><br><a href="/ol/openlayers-map.js"  style="font-size:10px;opacity:0.8;">68 lines</a>
+        </span>
+      </div>
+      <iframe name="map" src="" class="map" frameborder=none></iframe>
+      </div>
+    </section>
+    <section class="info">
+      <ul>
+        <li>
+          All the libraries can render the tiles with minimal code.
+        </li>
+        <li>
+          Mapbox GL JS v2 seems the smoothest for pan and zoom, followed closely by v1.
+        </li>
+        <li>
+          Over-zooming in Leaflet does not work as expected when using the <code>L.canvas</code> renderer.
+        </li>
+        <li>
+          I wasn unable to add a highlight effect or feature query with the Esri API. In the example, feature data is extracted by <a href="https://github.com/reyemtm/tilequery" target="_blank">tilequery</a>.
+        </li>
+      </ul>
+    </section>
+  </main>
+  <footer>
+    <div style="text-align:center;">
+      a project by <a href="https://getbounds/com">getBounds | Malcolm Meyer</a>
+    </div>
+  </footer>
+  <script>
+
+    const query = new URLSearchParams(window.location.search);
+    const currentMap = (!query || !query.get("map")) ? "leaflet" : query.get("map");
+    document.querySelector("iframe").src = window.location.origin + "/" + currentMap + "/";
+
+    const buttons = [...Object.values(document.querySelectorAll(".links a"))]
+    buttons.map(b => {
+      if (b.href.split("=")[1] === currentMap) {
+        // b.classList.add("active");
+        switch (currentMap) {
+          case "leaflet"     : b.style.color = "#e040fb"; break;
+          case "ol"          : b.style.color = "#36BBCD"; break;
+          case "esri-v4"     : b.style.color = "#ffa000"; break;
+          default       : b.style.color = "#4264FB";
+        }
+      }
+    })
+  </script>
+
+</body>
+</html>

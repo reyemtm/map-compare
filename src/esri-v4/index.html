@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset=utf-8 />
+  <title>Map Compare | Esri Vector Tiles</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  </style>
+  <link
+    rel="stylesheet"
+    href="https://js.arcgis.com/4.17/esri/themes/light/main.css"
+  />
+  <script src="../assets/tilequery.js"></script>
+  <!-- <script async src="https://analytics.apps.zerospatial.com/tracker.js" data-ackee-server="https://analytics.apps.zerospatial.com" data-ackee-domain-id="344c0852-dbe7-4169-bc6c-71bf074fe472"></script> -->
+  <script src="https://js.arcgis.com/4.17/"></script>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    #info {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      background: rgba(0,0,0,0.8);
+      color: white;
+      height: 1rem;
+      width: auto;
+      padding: 0.8rem;
+      z-index: 100;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="info"></div>
+  <div id="map" class="map-full"></div>
+  <script src="/esri-v4/esri-map.js"></script>
+</body>
+
+</html>
