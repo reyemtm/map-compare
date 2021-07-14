@@ -86,7 +86,7 @@
 
     const query = new URLSearchParams(window.location.search);
     const currentMap = (!query || !query.get("map")) ? "leaflet" : query.get("map");
-    document.querySelector("iframe").src = window.location.origin + window.location.pathmame + "/" + currentMap + "/";
+    document.querySelector("iframe").src = window.location.origin + window.location.pathname + "/" + currentMap + "/";
 
     const buttons = [...Object.values(document.querySelectorAll(".links a"))]
     buttons.map(b => {
