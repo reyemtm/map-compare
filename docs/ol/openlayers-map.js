@@ -19,6 +19,7 @@ function initOl() {
       color: "rgba(205,71,54,0.2)"
     }),
   });
+  const tiles = window.location.origin + '/map-compare/tiles/fairfield/{z}/{x}/{y}.mvt'
   const vtLayer = new ol.layer.VectorTile({
     declutter: true,
     source: new ol.source.VectorTile({
@@ -26,7 +27,7 @@ function initOl() {
       format: new ol.format.MVT({
         idProperty: 'vtlid',
       }),
-      url: '/tiles/fairfield/{z}/{x}/{y}.mvt',
+      url: tiles
     }),
     style: parcel,
   });

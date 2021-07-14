@@ -13,7 +13,7 @@ require([
       minZoom: 11
     }
   });
-  const tiles = window.location.origin + '//tiles/fairfield/{z}/{x}/{y}.mvt'
+  const tiles = window.location.origin + '/map-compare/tiles/fairfield/{z}/{x}/{y}.mvt'
   const style = {
     "version": 8,
     "sprite": "https://cdn.arcgis.com/sharing/rest/content/items/75f4dfdff19e445395653121a95a85db/resources/styles/../sprites/sprite",

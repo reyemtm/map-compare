@@ -9,7 +9,7 @@ function initLeaflet() {
     zoomControl: false
   });
   L.hash(map)
-  const pbf = L.vectorGrid.protobuf("/tiles/fairfield/{z}/{x}/{y}.mvt", {
+  const pbf = L.vectorGrid.protobuf(window.location.origin + '/map-compare/tiles/fairfield/{z}/{x}/{y}.mvt', {
     rendererFactory: L.canvas.tile,
     vectorTileLayerStyles: {
       fairfield: {
