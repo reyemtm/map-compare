@@ -1,5 +1,5 @@
 # map-compare
-A comparison of four different map rendering libraries.
+A comparison of four different map libraries rendering vector tiles.
 
 [https://reyemtm.github.io/map-compare/](https://reyemtm.github.io/map-compare)
 
