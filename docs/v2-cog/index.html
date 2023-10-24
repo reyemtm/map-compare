@@ -25,7 +25,7 @@
   <meta property="twitter:image" content="https://map-compare.getbounds.com/image.jpg" />
   <meta property="twitter:site" content="@getbounds" />
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../style.css">
 
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display" rel="stylesheet">
@@ -34,28 +34,28 @@
 <body>
   <header>
     <h1 style="font-family: 'Major Mono Display', monospace;font-weight:100;letter-spacing: 4px;">MapCompare</h1>
-    <h2>v1 Comparison of Vector Tile Rendering</h2>
-    <a href="v2-cog/">v2 Cloud-Optimized GeoTIFF</a>
+    <h2>v2 Comparison of Cloud-Optimized GeoTIFF Rendering</h2>
+    <a href="../">v1 Vector Tiles</a>
   </header>
 
   </div>
   <main>
     <section class="container">
       <div class="links">
-        <span>
+        <!-- <span>
           <a href="?map=esri-v4">Esri v4</a><br><a href="esri-v4/esri-map.js"  style="font-size:10px;opacity:0.8;">100 lines</a>
-        </span>
+        </span> -->
         <span>
-          <a href="?map=leaflet">Leaflet</a><br><a href="leaflet/leaflet-map.js" style="font-size:10px;opacity:0.8;">42 lines</a>
+          <a href="?map=leaflet">Leaflet</a>
         </span>
-        <span>
+        <!-- <span>
           <a href="?map=mapbox-v1">Mapbox</a><br><a href="mapbox-v1/mapbox-v1-map.js"  style="font-size:10px;opacity:0.8;">94 lines</a>
-        </span>
-        <span>
+        </span> -->
+        <!-- <span>
           <a href="?map=mapbox-v2">Mapbox v2</a><br><a href="mapbox-v1/mapbox-v1-map.js"  style="font-size:10px;opacity:0.8;">95 lines</a>
-        </span>
+        </span> -->
         <span>
-          <a href="?map=ol">OpenLayers</a><br><a href="ol/openlayers-map.js"  style="font-size:10px;opacity:0.8;">68 lines</a>
+          <a href="?map=ol">OpenLayers</a>
         </span>
       </div>
       <iframe name="map" src="" class="map" frameborder=none></iframe>
@@ -63,18 +63,9 @@
     </section>
     <section class="info">
       <ul>
-        <li>
-          All the libraries can render the tiles with minimal code.
-        </li>
-        <li>
-          Mapbox GL JS v2 seems the smoothest for pan and zoom, followed closely by v1.
-        </li>
-        <li>
-          Over-zooming in Leaflet does not work as expected when using the <code>L.canvas</code> renderer.
-        </li>
-        <li>
-          I was unable to add a highlight effect or feature query with the Esri API. In the example, feature data is extracted by <a href="https://github.com/reyemtm/tilequery" target="_blank">tilequery</a>.
-        </li>
+        <li>The COG was downloaded from the official GeoTIFF example site, and is stored on Digital Ocean Spaces.</li>
+        <li>OpenLayers is the clear winner here. I am curious to try this with an entire county-wide COG.</li>
+        <li>There may be alternative renderers for Leaflet or other libraries, and I will update this if I find more examples.</li>
       </ul>
     </section>
   </main>
@@ -86,8 +77,8 @@
   <script>
 
     const query = new URLSearchParams(window.location.search);
-    const currentMap = (!query || !query.get("map")) ? "leaflet" : query.get("map");
-    document.querySelector("iframe").src = window.location.origin + window.location.pathname + "/" + currentMap + "/";
+    const currentMap = (!query || !query.get("map")) ? "ol" : query.get("map");
+    document.querySelector("iframe").src = window.location.origin + window.location.pathname.replace("index.html", "") + "/" + currentMap + "/";
 
     const buttons = [...Object.values(document.querySelectorAll(".links a"))]
     buttons.map(b => {
@@ -96,8 +87,8 @@
         switch (currentMap) {
           case "leaflet"     : b.style.color = "#e040fb"; break;
           case "ol"          : b.style.color = "#36BBCD"; break;
-          case "esri-v4"     : b.style.color = "#ffa000"; break;
-          default       : b.style.color = "#4264FB";
+          // case "esri-v4"     : b.style.color = "#ffa000"; break;
+          // default       : b.style.color = "#4264FB";
         }
       }
     })

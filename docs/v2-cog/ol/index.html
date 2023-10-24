@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cloud Optimized GeoTIFF (COG)</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol/ol.css" type="text/css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/geotiff@2.0.5/dist-browser/geotiff.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/build/ol.js"></script> -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/openlayers/8.1.0/dist/ol.min.js' integrity='sha512-Lu3mKY4gbgocyIAil/7VhNwTSQuvpcLwDyaNz2yhCymG1GiV98pcRsfePdAK7EarOsKHtEMYjhrAt4brBu3HuQ==' crossorigin='anonymous'></script>
+     
+    <style>
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      .map {
+        position: relative;
+        width: 100%;
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map" class="map"></div>
+
+    <script>
+      // console.log(ol)
+      // import GeoTIFF from "./src/ol/source/GeoTIFF.js";
+      // import Map from "./src/ol/Map.js";
+      // import TileLayer from "./src/ol/layer/WebGLTile.js";
+      const source = new ol.source.GeoTIFF({
+        sources: [
+          {
+            // url: 'https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/36/Q/WD/2020/7/S2A_36QWD_20200701_0_L2A/TCI.tif',
+            url: "https://tileserv.nyc3.cdn.digitaloceanspaces.com/public/cog-jpg.tif",
+          },
+        ],
+        convertToRGB: true,
+      });
+
+      const map = new ol.Map({
+        target: "map",
+        layers: [
+          new ol.layer.WebGLTile({
+            source: source,
+          }),
+        ],
+        view: source.getView(),
+      });
+    </script>
+  </body>
+</html>
