@@ -19,7 +19,8 @@ function initOl() {
       color: "rgba(205,71,54,0.2)"
     }),
   });
-  const tiles = window.location.origin + '/map-compare/tiles/fairfield/{z}/{x}/{y}.mvt'
+  const hosted = window.location.pathname.includes('map-compare')
+  const tiles = window.location.origin + (hosted ? '/map-compare' : '') + '/tiles/fairfield/{z}/{x}/{y}.mvt'
   const vtLayer = new ol.layer.VectorTile({
     declutter: true,
     source: new ol.source.VectorTile({

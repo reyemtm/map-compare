@@ -6,7 +6,8 @@ function initMapboxV1() {
     minZoom: 11,
     center: [-82.611995,39.713426],
   });
-  const tiles = window.location.origin + '/map-compare/tiles/fairfield/{z}/{x}/{y}.mvt'
+  const hosted = window.location.pathname.includes('map-compare')
+  const tiles = window.location.origin + (hosted ? '/map-compare' : '') + '/tiles/fairfield/{z}/{x}/{y}.mvt'
   map.addSource('local', {
     'type': 'vector',
     'tiles': [tiles],
