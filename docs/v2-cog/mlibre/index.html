@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+  <style>
+    #map {
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  </style>
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl/dist/maplibre-gl.css">
+  <script src="https://unpkg.com/maplibre-gl/dist/maplibre-gl.js"></script>
+  <script src="https://unpkg.com/@geomatico/maplibre-cog-protocol/dist/index.js"></script>
+</head>
+
+<body>
+  <div id="map"></div>
+
+  <script>
+    const url_to_geotiff_file =
+      "https://tileserv.nyc3.cdn.digitaloceanspaces.com/public/cog-jpg.tif";
+    const basemap = "http://a.tile.osm.org/{z}/{x}/{y}.png"
+    const attribution = '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors';
+
+    maplibregl.addProtocol('cog', MaplibreCOGProtocol.cogProtocol);
+    const map = new maplibregl.Map({
+      container: "map",
+      style: {
+        version: 8,
+        sources: {
+          basemap: {
+            type: "raster",
+            tiles: [basemap],
+            tileSize: 256,
+          },
+          cog: {
+            type: "raster",
+            url: "cog://" + url_to_geotiff_file,
+            tileSize: 256,
+            minzoom: 0,
+            maxzoom: 24
+          }
+        },
+        layers: [
+          {
+            id: 'background',
+            type: 'background',
+            paint: {
+              'background-color': '#212121'
+            }
+          },
+          // {
+          //   id: "basemap",
+          //   type: "raster",
+          //   source: "basemap"
+          // },
+          {
+            id: "cog",
+            type: "raster",
+            source: "cog"
+          }
+        ]
+      },
+      center: [-63.04852, 18.0256],
+      zoom: 15.5,
+      maxZoom: 21
+    });
+    map.on("load", () => {
+      map.fitBounds([
+        [-63.055858612060554, 18.021915197958258],
+        [-63.04315567016603, 18.02893435094081]
+      ]);
+    });
+
+  </script>
+</body>
+
+</html>

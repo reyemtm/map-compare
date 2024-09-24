@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
@@ -29,8 +30,10 @@
 
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display" rel="stylesheet">
-  <script async src="https://ackee.getbounds.dev/tracker.js" data-ackee-server="https://ackee.getbounds.dev" data-ackee-domain-id="040c6355-3242-4f0e-95c0-ad4d9c442e5e"></script>
+  <script async src="https://ackee.getbounds.dev/tracker.js" data-ackee-server="https://ackee.getbounds.dev"
+    data-ackee-domain-id="040c6355-3242-4f0e-95c0-ad4d9c442e5e"></script>
 </head>
+
 <body>
   <header>
     <h1 style="font-family: 'Major Mono Display', monospace;font-weight:100;letter-spacing: 4px;">MapCompare</h1>
@@ -48,6 +51,9 @@
         <span>
           <a href="?map=leaflet">Leaflet</a>
         </span>
+        <span>
+          <a href="?map=mlibre">MapLibre</a>
+        </span>
         <!-- <span>
           <a href="?map=mapbox-v1">Mapbox</a><br><a href="mapbox-v1/mapbox-v1-map.js"  style="font-size:10px;opacity:0.8;">94 lines</a>
         </span> -->
@@ -64,8 +70,9 @@
     <section class="info">
       <ul>
         <li>The COG was downloaded from the official GeoTIFF example site, and is stored on Digital Ocean Spaces.</li>
-        <li>OpenLayers is the clear winner here. I am curious to try this with an entire county-wide COG.</li>
-        <li>There may be alternative renderers for Leaflet or other libraries, and I will update this if I find more examples.</li>
+        <li>OL has the ability to read the no-data/mask values, and combine multiple rasters into on tile layer.</li>
+        <li>2024-09-24: Added the <a href="https://www.npmjs.com/package/@geomatico/maplibre-cog-protocol">geomatico</a>
+          COG protocol for MapLibre.</li>
       </ul>
     </section>
   </main>
@@ -85,8 +92,9 @@
       if (b.href.split("=")[1] === currentMap) {
         // b.classList.add("active");
         switch (currentMap) {
-          case "leaflet"     : b.style.color = "#e040fb"; break;
-          case "ol"          : b.style.color = "#36BBCD"; break;
+          case "leaflet": b.style.color = "#e040fb"; break;
+          case "ol": b.style.color = "#36BBCD"; break;
+          case "mlibre": b.style.color = "#4264FB"; break;
           // case "esri-v4"     : b.style.color = "#ffa000"; break;
           // default       : b.style.color = "#4264FB";
         }
@@ -95,4 +103,5 @@
   </script>
 
 </body>
+
 </html>
